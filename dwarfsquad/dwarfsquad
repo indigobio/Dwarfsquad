@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+from argparse import ArgumentParser
+from requests.auth import HTTPBasicAuth
+import json
+import requests_cache
+from dwarfsquad import get_supported_actions, get_supported_collections
+from dwarfsquad.lib.DwarfEncoder import DwarfEncoder
+import dwarfsquad.lib.actions as dwarfactions
+from dwarfsquad.lib.connections import can_login, site_exists
+
+
+class DwarfSquad(object):
+
+    def __init__(self, action, collection, item, site, username, password):
+
+        try:
+            getattr(dwarfactions, action[0].lower())
+        except ImportError:
+            print "No action named " + action[0]
+            raise NotImplementedError
+
+        self.action = action[0].lower()
+        self.collection = collection[0]
+        self.uri = site
+
+        if username and password:
+            self.auth = HTTPBasicAuth(username, password)
+        else:
+            self.auth = None
+        try:
+            self.data = item
+        except TypeError:
+            self.data = None
+        self.validate_constructor(self.action, site, self.auth)
+
+    def run(self):
+        return getattr(dwarfactions, self.action)(self.uri, self.auth, self.data, self.collection.lower())
+
+    @staticmethod
+    def validate_constructor(action, site, auth):
+        try:
+            assert action in get_supported_actions().split()
+        except AssertionError:
+            raise AssertionError("The action \"" + str(action) + "\" is not supported by dwarfsquad.")
+        try:
+            if site:
+                assert site_exists(site) and can_login(site, auth)
+        except AssertionError:
+            raise AssertionError("Either the site " + str(site) +
+                                 " does not exist, or the supplied credentials are incorrect.")
+
+
+def main():
+
+    parser = ArgumentParser(description='Easily manipulate assay configurations in web. Dwarfsquad v2.0.0rc2')
+    parser.add_argument("action", action="store", nargs=1, help=get_supported_actions())
+    parser.add_argument("collection", action="store", nargs=1, help=get_supported_collections())
+    parser.add_argument("items", action="store", nargs='*', help='items')
+    parser.add_argument("--site", action="store", dest="site", default=None, help='base URI to work on')
+    parser.add_argument("--username", action="store", dest="username", default=None)
+    parser.add_argument("--password", action="store", dest="password", default=None)
+
+    args = parser.parse_args()
+    requests_cache.install_cache('dwarfsquad_cache', expire_after=3600, backend='memory')
+    requests_cache.clear()
+
+    ds = DwarfSquad(args.action, args.collection, args.items, args.site, args.username, args.password)
+
+    response = ds.run()
+
+    if isinstance(response, unicode):
+        print(response)
+    else:
+        print(json.dumps(response, default=DwarfEncoder().default))
+    requests_cache.uninstall_cache()
+
+
+if __name__ == "__main__":
+    main()
