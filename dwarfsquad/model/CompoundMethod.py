@@ -6,6 +6,7 @@ from Calibration import Calibration
 class CompoundMethod(BaseWebModel):
     required_fields = {
         "name": "",
+        "id": "",
         "view_order": 1,
         "chromatogram_methods": [],
         "calibration": Calibration({}),

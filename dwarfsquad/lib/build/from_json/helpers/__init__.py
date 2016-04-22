@@ -1,1 +1,1 @@
-from json_helpers import build_full_ac_from_json
+from json_helpers import build_full_ac_from_json, validate_json

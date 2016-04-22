@@ -16,13 +16,14 @@ class BaseWebModel(dict, object):
 
         # id gets precedence here because the response from web uses 'id'
         if item.get('id') and bson.ObjectId.is_valid(str(item.get('id'))):
-            self._id = self.id
+            self._id = str(self.id)
         elif item.get('_id') and bson.ObjectId.is_valid(str(item.get('_id'))):
-            pass
+            self._id = str(self._id)
         elif item.get('_id') and isinstance(item.get('_id'), dict):
-            self._id = item.get('_id').get("$oid")
+            self._id = str(item.get('_id').get("$oid"))
         else:
-            self._id = bson.ObjectId()
+            self._id = str(bson.ObjectId())
+
         self.id = self._id
 
     def __getattribute__(self, attr):

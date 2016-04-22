@@ -63,7 +63,7 @@ def build_compound_row(compound, reference_map):
         row['upper_trace_width'] = ch_m.peak_integration.retention_time.upper_trace_width
         row['max'] = ch_m.peak_integration.smoothing.max
         row['min'] = ch_m.peak_integration.smoothing.min
-        row['optimal_enabled'] = ch_m.peak_integration.smoothing.optimal_enabled
+        row['optimal_enabled'] = str(ch_m.peak_integration.smoothing.optimal_enabled)
         row['start'] = ch_m.peak_integration.smoothing.start
         row['fixed'] = ch_m.peak_integration.smoothing.fixed
         row['saturation'] = ch_m.peak_integration.threshold.saturation

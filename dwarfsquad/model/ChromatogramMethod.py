@@ -6,6 +6,7 @@ from PeakIntegration import PeakIntegration
 class ChromatogramMethod(BaseWebModel):
     required_fields = {
         "name": "",
+        "id": "",
         "reduction_method": ReductionMethod({}),
         "peak_integration": PeakIntegration({}),
         "rule_settings": {}

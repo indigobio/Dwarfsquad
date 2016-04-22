@@ -1,3 +1,4 @@
+import datetime
 from BaseWebModel import BaseWebModel
 from Level import Level
 
@@ -5,7 +6,10 @@ from Level import Level
 class Lot(BaseWebModel):
     required_fields = {
         'name': '',
+        'id': '',
         'levels': [],
+        "created_at": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.000Z'),
+        "updated_at": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.000Z'),
         'sample_type': 'STANDARD',
         'compounds': []
     }

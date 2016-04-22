@@ -1,3 +1,4 @@
+import datetime
 from BaseWebModel import BaseWebModel
 from CompoundMethod import CompoundMethod
 from Lot import Lot
@@ -9,6 +10,8 @@ from DisplaySettings import DisplaySettings
 class AssayConfiguration(BaseWebModel):
     required_fields = {
         'name': "",
+        'created_at': datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.000Z'),
+        'updated_at': datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.000Z'),
         'compute_version': "",
         'compound_methods': [],
         'lots': [],

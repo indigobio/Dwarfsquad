@@ -2,10 +2,14 @@ from dwarfsquad.model import AssayConfiguration
 
 
 def build_full_ac_from_json(json_doc):
-
     ac = AssayConfiguration(json_doc)
     set_references_to_id(ac)
     return ac
+
+
+def validate_json(json_data):
+    assert 'name' in json_data
+    assert 'compound_methods' in json_data
 
 
 def set_references_to_id(ac):
