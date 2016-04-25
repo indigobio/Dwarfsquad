@@ -14,6 +14,12 @@ def export_full_ac(ac):
     to_stderr("Wrote " + ac.name + ".xlsx")
 
 
+def set_all_cells_to_text(ws):
+    for row in ws.rows:
+        for cell in row:
+            cell.number_format = '@'
+
+
 def get_workbook(ac):
     wb = Workbook()
     assay_worksheet = wb.create_sheet(title="Assay")
@@ -28,6 +34,7 @@ def get_workbook(ac):
     lot_rows = build_lot_rows(ac)
     lots_levels_worksheet.append(lot_rows[0].keys())
     [lots_levels_worksheet.append(r.values()) for r in lot_rows]
+    set_all_cells_to_text(lots_levels_worksheet)
     rulesettings_worksheet = wb.create_sheet(title="Rule")
     rulesettings_rows = get_rulesettings_rows(ac)
     rulesettings_keys = get_rulesettings_keys(rulesettings_rows)
