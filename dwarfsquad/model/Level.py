@@ -32,7 +32,7 @@ class ControlMaterial(BaseWebModel):
     required_fields = {
         'name': '',
         'nominal_conc': '',
-        'std_dev': ''
+        'std_dev': 0.0
     }
 
     def __init__(self, *args):
@@ -51,10 +51,10 @@ class ControlMaterial(BaseWebModel):
         try:
             self.nominal_conc = float(nominal_conc)
         except ValueError:
-            self.nominal_conc = None
+            self.nominal_conc = 0.0
 
     def set_std_dev(self, std_dev):
         try:
             self.std_dev = float(std_dev)
         except ValueError:
-            self.std_dev = None
+            self.std_dev = 0.0
