@@ -3,6 +3,7 @@ from BaseWebModel import BaseWebModel
 
 class Level(BaseWebModel):
     required_fields = {
+        'id': '',
         'name': '',
         'control_material': []
     }
@@ -31,7 +32,7 @@ class Level(BaseWebModel):
 class ControlMaterial(BaseWebModel):
     required_fields = {
         'name': '',
-        'nominal_conc': '',
+        'nominal_conc': 0.0,
         'std_dev': 0.0
     }
 
