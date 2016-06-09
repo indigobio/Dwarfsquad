@@ -40,8 +40,12 @@ class Threshold(BaseWebModel):
         self.peak_probability = peak_probability
 
     def set_absolute_area(self, absolute_area):
-        assert isinstance(float(absolute_area), float)
-        self.absolute_area = absolute_area
+        try:
+            assert isinstance(float(absolute_area), float)
+            self.absolute_area = absolute_area
+        except Exception as e:
+            raise e
+
 
     def set_min_merge_difference(self, min_merge_difference):
         assert isinstance(float(min_merge_difference), float)

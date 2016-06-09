@@ -17,15 +17,15 @@ def get_rulesettings_csv(path_to_export):
 
 
 def get_enabled_rules(rulesettings_list, cm):
-
     enabled_rules_lookup = {}
     for row in rulesettings_list:
         if row['context'] == 'compound' and row['compound'] == cm.name:
             for column, value in row.iteritems():
-                if value.lower() == 'enabled':
+                if column and value.lower() == 'enabled':
                     enabled_rules_lookup[column] = True
-                elif value.lower() == 'disabled':
+                elif column and value.lower() == 'disabled':
                     enabled_rules_lookup[column] = False
+
 
     return enabled_rules_lookup
 
@@ -36,7 +36,7 @@ def get_settings(rulesettings_list, reference_map, cm, context='compound'):
     for row in rulesettings_list:
         if row['context'] == context and row['compound'] == cm.name:
             for column, value in row.iteritems():
-                if value.lower() not in ['enabled', 'disabled', cm.name.lower(), context.lower(), 'ignore']:
+                if column and value.lower() not in ['enabled', 'disabled', cm.name.lower(), context.lower(), 'ignore']:
                     try:
                         referenced_value = reference_map[str(value)]
                         if referenced_value:

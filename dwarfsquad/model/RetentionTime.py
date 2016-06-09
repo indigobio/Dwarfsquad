@@ -32,19 +32,19 @@ class RetentionTime(BaseWebModel):
         try:
             self.expected = float(expected)
         except ValueError:
-            self.expected = ""
+            self.expected = 0.0
 
     def set_window_width(self, window_width):
         try:
             self.window_width = float(window_width)
         except ValueError:
-            self.window_width = ""
+            self.window_width = 0.25
 
     def set_estimation_width(self, estimation_width):
         try:
             self.estimation_width = float(estimation_width)
         except ValueError:
-            self.estimation_width = 1.0
+            self.estimation_width = 0.25
 
     def set_upper_trace_width(self, upper_trace_width):
         try:
@@ -64,17 +64,21 @@ class RetentionTime(BaseWebModel):
         try:
             self.lower_tolerance = float(lower_tolerance)
         except ValueError:
-            self.lower_tolerance = ""
+            self.lower_tolerance = 0.25
 
     def set_upper_tolerance(self, upper_tolerance):
         try:
             self.upper_tolerance = float(upper_tolerance)
         except ValueError:
-            self.upper_tolerance = ""
+            self.upper_tolerance = 0.25
 
     def set_reference_type_source(self, reference_type_source):
-        assert reference_type_source.lower() in ['expected', 'chromatogram', 'samples']
-        self.reference_type_source = reference_type_source.lower()
+        try:
+            assert reference_type_source.lower() in ['expected', 'chromatogram', 'samples']
+            self.reference_type_source = reference_type_source.lower()
+        except AssertionError as e:
+            print(reference_type_source)
+            raise e
 
     def set_reference(self, reference):
         try:
@@ -95,7 +99,7 @@ class RetentionTime(BaseWebModel):
         try:
             self.bias = float(bias)
         except ValueError:
-            self.bias = None
+            self.bias = 0.0
 
     def pop_references(self):
         if isinstance(self.reference, dict):

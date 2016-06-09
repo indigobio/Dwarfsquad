@@ -5,10 +5,15 @@ import dwarfsquad.model
 def build_compound_methods(compounds_csv):
     compound_methods = []
     for row in compounds_csv:
-        compound_method = get_compound_method(compound_methods, row)
-        chromatogram_method = get_chromatogram_method(row)
-        compound_method.chromatogram_methods.append(chromatogram_method)
-        compound_methods.insert(compound_method.view_order, compound_method)
+        try:
+            compound_method = get_compound_method(compound_methods, row)
+            chromatogram_method = get_chromatogram_method(row)
+            compound_method.chromatogram_methods.append(chromatogram_method)
+            compound_methods.insert(compound_method.view_order, compound_method)
+        except Exception as e:
+            for k, v in row.items():
+                print(k + ": " + v)
+            raise e
 
     reference_map = build_reference_map(compound_methods)
 
@@ -16,7 +21,6 @@ def build_compound_methods(compounds_csv):
 
 
 def resolve_references(compound_methods, reference_map):
-
     resolved_cms = []
     for cm in compound_methods:
         cm.calibration.normalizers = [reference_map[n] for n in cm.calibration.normalizers if n]
@@ -122,7 +126,6 @@ def get_retention_time(row):
 
 
 def get_calibration(row):
-
 
     calibration = dwarfsquad.model.Calibration({})
     calibration.set_degree(row['degree'])
