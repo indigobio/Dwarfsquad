@@ -1,6 +1,6 @@
-from BaseWebModel import BaseWebModel
-from ReductionMethod import ReductionMethod
-from PeakIntegration import PeakIntegration
+from dwarfsquad.model.BaseWebModel import BaseWebModel
+from dwarfsquad.model.ReductionMethod import ReductionMethod
+from dwarfsquad.model.PeakIntegration import PeakIntegration
 
 
 class ChromatogramMethod(BaseWebModel):
@@ -20,14 +20,14 @@ class ChromatogramMethod(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = {**base, **arg}
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
         self.set_reduction_method(ReductionMethod(self.reduction_method))
         self.set_peak_integration(PeakIntegration(self.peak_integration))
 
     def set_name(self, name):
-        assert isinstance(name, basestring)
+        assert isinstance(name, str)
         self.name = name
 
     def set_reduction_method(self, reduction_method):
@@ -39,5 +39,5 @@ class ChromatogramMethod(BaseWebModel):
         self.peak_integration = peak_integration
 
     def set_type(self, ch_type):
-        assert isinstance(ch_type, basestring)
+        assert isinstance(ch_type, str)
         self.type = ch_type

@@ -1,4 +1,4 @@
-from BaseWebModel import BaseWebModel
+from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
 class ReductionMethod(BaseWebModel):
@@ -20,7 +20,7 @@ class ReductionMethod(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = {**base, **arg}
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 
@@ -32,7 +32,7 @@ class ReductionMethod(BaseWebModel):
 
     def set_polarity(self, polarity):
         try:
-            assert isinstance(polarity, basestring)
+            assert isinstance(polarity, str)
             assert polarity.lower() in ['unspecified', 'positive', 'negative']
             self.polarity = polarity.lower()
         except AssertionError:

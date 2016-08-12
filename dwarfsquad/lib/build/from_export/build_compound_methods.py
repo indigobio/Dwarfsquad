@@ -1,4 +1,4 @@
-from helpers import build_reference_map
+from dwarfsquad.lib.build.from_export.helpers import build_reference_map
 import dwarfsquad.model
 
 

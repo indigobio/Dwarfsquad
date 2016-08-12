@@ -1,1 +1,1 @@
-from dwarfupload import dwarfupload
+from dwarfsquad.lib.upload.dwarfupload import dwarfupload

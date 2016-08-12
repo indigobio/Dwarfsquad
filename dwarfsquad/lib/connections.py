@@ -1,7 +1,7 @@
 from requests.exceptions import SSLError
 import requests
-import urls as urls
-from exceptions import AuthorizationError
+from . import urls as urls
+from .exceptions import AuthorizationError
 from dwarfsquad.lib.utils import to_stderr
 
 

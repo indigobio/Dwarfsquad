@@ -1,4 +1,4 @@
-from BaseWebModel import BaseWebModel
+from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
 class Threshold(BaseWebModel):
@@ -23,7 +23,7 @@ class Threshold(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = {**base, **arg}
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 

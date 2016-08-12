@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from argparse import ArgumentParser
 from requests.auth import HTTPBasicAuth
 import json
@@ -16,7 +16,7 @@ class DwarfSquad(object):
         try:
             getattr(dwarfactions, action[0].lower())
         except ImportError:
-            print "No action named " + action[0]
+            print("No action named " + action[0])
             raise NotImplementedError
 
         self.action = action[0].lower()
@@ -68,7 +68,7 @@ def main():
 
     response = ds.run()
 
-    if isinstance(response, unicode):
+    if isinstance(response, str):
         print(response)
     else:
         print(json.dumps(response, default=DwarfEncoder().default))

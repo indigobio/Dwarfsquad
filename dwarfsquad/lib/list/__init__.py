@@ -1,1 +1,1 @@
-from dwarflist import dwarflist
+from dwarfsquad.lib.list.dwarflist import dwarflist

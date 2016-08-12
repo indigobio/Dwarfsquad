@@ -1,10 +1,10 @@
-from build import dwarfbuild
-from upload import dwarfupload
-from macros import dwarfmacros
-from repair import dwarfrepair
-from list import dwarflist
-from export import dwarfexport
-from check import dwarfcheck
+from dwarfsquad.lib.build.dwarfbuild import dwarfbuild
+from dwarfsquad.lib.upload import dwarfupload
+from dwarfsquad.lib.macros import dwarfmacros
+from dwarfsquad.lib.repair import dwarfrepair
+from dwarfsquad.lib.list import dwarflist
+from dwarfsquad.lib.export import dwarfexport
+from dwarfsquad.lib.check import dwarfcheck
 
 
 def build(url, credentials, data, collection):

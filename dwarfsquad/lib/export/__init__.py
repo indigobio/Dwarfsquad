@@ -1,1 +1,1 @@
-from dwarfexport import dwarfexport
+from dwarfsquad.lib.export.dwarfexport import dwarfexport

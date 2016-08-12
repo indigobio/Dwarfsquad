@@ -1,1 +1,1 @@
-from dwarfcheck import dwarfcheck
+from dwarfsquad.lib.check.dwarfcheck import dwarfcheck

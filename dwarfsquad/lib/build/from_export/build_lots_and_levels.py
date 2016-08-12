@@ -1,8 +1,6 @@
-import os
 from dwarfsquad.model import Lot, Level
-from helpers import get_lots_levels_csv
 from dwarfsquad.model.Level import ControlMaterial
-from dwarfsquad.model.Lot import Compound
+from dwarfsquad.model.Lot import LotCompound
 
 
 def build_lots_and_levels(lotslevels_csv):
@@ -43,7 +41,7 @@ def get_lot_compound(lot, row):
         if compound.name == row['compound']:
             return index, lot.compounds.pop(index)
 
-    compound = Compound({})
+    compound = LotCompound({})
     compound.set_name(row['compound'])
     if 'included' in row:
         compound.set_included(row['included'])

@@ -42,21 +42,21 @@ class BaseWebModel(dict, object):
         return cls(item)
 
     @classmethod
-    def className(cls):
+    def class_name(cls):
         return cls.__name__
 
     def build_entities_with_id(self, dictionary):
-        return dict(self.get_missing_items(dictionary).items() + dictionary.items())
+        return {**self.get_missing_items(dictionary), **dictionary}
 
     def build_required_entities_only(self, dictionary):
-        return dict(self.get_missing_items(dictionary).items() + self.get_required_items(dictionary).items())
+        return {**self.get_missing_items(dictionary), **self.get_required_items(dictionary)}
 
     def get_required_items(self, dictionary=None):
         if not dictionary:
             dictionary = self
 
         return_dict = {}
-        for key, val in dictionary.iteritems():
+        for key, val in dictionary.items():
             if isinstance(val, list) and key in self.required_fields.keys():
                 return_dict[key] = [v.get_required_items() if isinstance(v, BaseWebModel) else v for v in val]
             elif isinstance(val, BaseWebModel) and key in self.required_fields.keys():
@@ -68,10 +68,10 @@ class BaseWebModel(dict, object):
     def get_missing_items(self, dictionary=None):
         if not dictionary:
             dictionary = self
-        return dict((key, value) for key, value in deepcopy(self.required_fields).iteritems() if key not in dictionary)
+        return dict((key, value) for key, value in deepcopy(self.required_fields).items() if key not in dictionary)
 
     def dump(self):
-        return json.dumps(dict(self.get_required_items().items() + self.get_missing_items().items()))
+        return json.dumps({**self.get_required_items(), **self.get_missing_items()})
 
     def enumerate_arrays(self, model, items):
         try:

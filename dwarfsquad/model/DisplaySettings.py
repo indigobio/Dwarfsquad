@@ -14,7 +14,7 @@ class DisplaySettings(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = {**base, **arg}
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 
     def set_peak_area_format(self, peak_area_format):

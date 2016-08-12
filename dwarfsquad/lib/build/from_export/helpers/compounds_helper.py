@@ -1,6 +1,6 @@
 import os
 from dwarfsquad.lib.utils import to_stderr
-from csv_helper import read_csv
+from .csv_helper import read_csv
 
 
 def get_compounds_csv(export_dir):

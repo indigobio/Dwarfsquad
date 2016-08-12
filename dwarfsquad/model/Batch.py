@@ -28,6 +28,6 @@ class Batch(dict):
         return {'file': self.file, 'checksum': self.checksum}
 
     def close(self):
-        if "file" in self and isinstance(self.file, file):
+        if "file" in self and self.file:
             self.file.close()
             del self["file"]

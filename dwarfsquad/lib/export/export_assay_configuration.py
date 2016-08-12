@@ -32,26 +32,26 @@ def get_assay_configuration_rows(ac):
     row['review_method'] = ac.display_settings.review_method
     instruments = iter(ac.instruments)
     macros = iter(ac.macros)
-    properties = ac.properties.copy().iteritems()
+    properties = iter(ac.properties.copy().items())
 
     has_stuff_left = True
     while has_stuff_left:
 
         has_stuff_left = False
         try:
-            row['instruments'] = instruments.next()
+            row['instruments'] = next(instruments)
             has_stuff_left = True
         except (ValueError, StopIteration):
             row['instruments'] = ''
 
         try:
-            row['macros'] = macros.next()
+            row['macros'] = next(macros)
             has_stuff_left = True
         except (ValueError, StopIteration):
             row['macros'] = ''
 
         try:
-            prop = properties.next()
+            prop = next(properties)
             row['property_key'] = prop[0]
             row['property_value'] = prop[1]
             has_stuff_left = True
