@@ -36,7 +36,7 @@ except ImportError:
     USER_SITE = None
 
 LATEST = object()
-DEFAULT_VERSION = LATEST
+DEFAULT_VERSION = "23.1.0"
 DEFAULT_URL = "https://pypi.io/packages/source/s/setuptools/"
 DEFAULT_SAVE_DIR = os.curdir
 
