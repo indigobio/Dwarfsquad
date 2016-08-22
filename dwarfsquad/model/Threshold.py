@@ -1,3 +1,4 @@
+from dwarfsquad.lib.utils import to_stderr
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
@@ -44,16 +45,20 @@ class Threshold(BaseWebModel):
             assert isinstance(float(absolute_area), float)
             self.absolute_area = absolute_area
         except Exception as e:
-            raise e
-
+            to_stderr(str(e))
+            to_stderr("Setting absolute_area to 0")
+            self.absolute_area = 0
 
     def set_min_merge_difference(self, min_merge_difference):
         assert isinstance(float(min_merge_difference), float)
         self.min_merge_difference = min_merge_difference
 
     def set_absolute_height(self, absolute_height):
-        assert isinstance(float(absolute_height), float)
-        self.absolute_height = absolute_height
+        try:
+            assert isinstance(float(absolute_height), float)
+            self.absolute_height = absolute_height
+        except Exception as e:
+            to_stderr(str(e))
 
     def set_relative_height(self, relative_height):
         assert isinstance(float(relative_height), float)
