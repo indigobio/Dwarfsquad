@@ -1,6 +1,6 @@
 from dwarfsquad.lib.utils import to_stderr
 import os
-from .csv_helper import read_csv
+from dwarfsquad.lib.build.from_export.helpers.csv_helper import read_csv
 
 
 def get_rulesettings_csv(path_to_export):
