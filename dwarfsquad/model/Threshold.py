@@ -29,49 +29,64 @@ class Threshold(BaseWebModel):
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 
     def set_relative_area(self, relative_area):
-        assert isinstance(float(relative_area), float)
-        self.relative_area = relative_area
+        try:
+            self.relative_area = str(float(relative_area))
+        except ValueError:
+            self.relative_area = self.set_to_zero()
 
     def set_saturation(self, saturation):
-        assert isinstance(float(saturation), float)
-        self.saturation = saturation
+        try:
+            self.saturation = str(float(saturation))
+        except ValueError:
+            self.saturation = self.set_to_zero()
 
     def set_peak_probability(self, peak_probability):
-        assert isinstance(float(peak_probability), float)
-        self.peak_probability = peak_probability
+            try:
+                self.peak_probability = str(float(peak_probability))
+            except ValueError:
+                self.peak_probability = self.set_to_zero()
 
     def set_absolute_area(self, absolute_area):
         try:
-            assert isinstance(float(absolute_area), float)
-            self.absolute_area = absolute_area
-        except Exception as e:
-            to_stderr(str(e))
-            to_stderr("Setting absolute_area to 0")
-            self.absolute_area = 0
+            self.absolute_area = str(float(absolute_area))
+        except ValueError:
+            self.absolute_area = self.set_to_zero()
 
     def set_min_merge_difference(self, min_merge_difference):
-        assert isinstance(float(min_merge_difference), float)
-        self.min_merge_difference = min_merge_difference
+        try:
+            self.min_merge_difference = str(float(min_merge_difference))
+        except ValueError:
+            self.min_merge_difference = self.set_to_zero()
 
     def set_absolute_height(self, absolute_height):
         try:
-            assert isinstance(float(absolute_height), float)
-            self.absolute_height = absolute_height
+            self.absolute_height = str(float(absolute_height))
         except Exception as e:
-            to_stderr(str(e))
+            self.absolute_height = self.set_to_zero()
 
     def set_relative_height(self, relative_height):
-        assert isinstance(float(relative_height), float)
-        self.relative_height = relative_height
+        try:
+            self.relative_height = str(float(relative_height))
+        except ValueError:
+            self.relative_height = self.set_to_zero()
 
     def set_signal_to_noise(self, signal_to_noise):
-        assert isinstance(float(signal_to_noise), float)
-        self.signal_to_noise = signal_to_noise
+        try:
+            self.signal_to_noise = str(float(signal_to_noise))
+        except ValueError:
+            self.signal_to_noise = self.set_to_zero()
 
     def set_second_derivative(self, second_derivative):
-        assert isinstance(float(second_derivative), float)
-        self.second_derivative = second_derivative
+        try:
+            self.second_derivative = str(float(second_derivative))
+        except ValueError:
+            self.second_derivative = self.set_to_zero()
 
     def set_first_derivative(self, first_derivative):
-        assert isinstance(float(first_derivative), float)
-        self.first_derivative = first_derivative
+        try:
+            self.first_derivative = str(float(first_derivative))
+        except ValueError:
+            self.first_derivative = str(0)
+
+    def set_to_zero(self):
+        return str(0)
