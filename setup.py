@@ -12,4 +12,10 @@ setup(name='dwarfsquad',
       author='Kenneth Tussey',
       author_email='whereskenneth@gmail.com',
       scripts=['dwarfsquad/dwarfsquad'],
+      install_requires=[
+            'pymongo',
+            'tqdm',
+            'requests',
+            'openpyxl'
+      ],
       packages=find_packages())
