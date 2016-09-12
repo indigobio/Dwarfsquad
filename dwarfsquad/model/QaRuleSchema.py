@@ -1,3 +1,4 @@
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
@@ -17,7 +18,7 @@ class QaRuleSchema(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
         self.set_rule_parameters(self.enumerate_arrays(RuleParameter, self.rule_parameters))
@@ -43,5 +44,5 @@ class RuleParameter(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
         BaseWebModel.__init__(self, self.build_required_entities_only(base))

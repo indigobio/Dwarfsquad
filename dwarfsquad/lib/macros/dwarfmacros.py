@@ -1,5 +1,5 @@
 from dwarfsquad.lib.macros.generate_macros import generate_macros
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 
 
 def dwarfmacros(url, data, collection, credentials):

@@ -1,3 +1,4 @@
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 from dwarfsquad.model.ControlMaterial import ControlMaterial
 
@@ -17,7 +18,7 @@ class Level(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
         self.control_material = self.enumerate_arrays(ControlMaterial, self.control_material)
 

@@ -1,4 +1,4 @@
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib.export.export_full_ac import export_full_ac
 from dwarfsquad.lib import collections
 from dwarfsquad.lib.export.export_compounds import export_compounds

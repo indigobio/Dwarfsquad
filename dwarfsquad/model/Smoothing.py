@@ -1,3 +1,4 @@
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
@@ -18,7 +19,7 @@ class Smoothing(BaseWebModel):
         base = {}
         for arg in reversed(args):
             if isinstance(arg, dict):
-                base = {**base, **arg}
+                base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 

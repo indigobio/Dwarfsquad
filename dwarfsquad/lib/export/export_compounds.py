@@ -2,7 +2,7 @@ import csv
 from tqdm import tqdm
 from collections import OrderedDict
 from dwarfsquad.lib.utils import to_stderr, map_chromatogram_methods
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib.build.from_export import helpers as export_helpers
 
 

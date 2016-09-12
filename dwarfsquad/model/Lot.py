@@ -1,4 +1,6 @@
 import datetime
+
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 from dwarfsquad.model.Level import Level
 from dwarfsquad.model.LotCompound import LotCompound
@@ -23,7 +25,7 @@ class Lot(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
 
         self.levels = self.enumerate_arrays(Level, self.levels)

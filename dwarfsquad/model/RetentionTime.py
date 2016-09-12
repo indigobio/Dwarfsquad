@@ -1,4 +1,5 @@
 import bson
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 from bson.errors import InvalidId
 
@@ -26,7 +27,7 @@ class RetentionTime(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 
     def set_expected(self, expected):
@@ -78,7 +79,6 @@ class RetentionTime(BaseWebModel):
             assert reference_type_source.lower() in ['expected', 'chromatogram', 'samples']
             self.reference_type_source = reference_type_source.lower()
         except AssertionError as e:
-            print(reference_type_source)
             raise e
 
     def set_reference(self, reference):

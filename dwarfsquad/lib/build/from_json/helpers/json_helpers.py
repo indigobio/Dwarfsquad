@@ -1,4 +1,4 @@
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 
 
 def build_full_ac_from_json(json_doc):

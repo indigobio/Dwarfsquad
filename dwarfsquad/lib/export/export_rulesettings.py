@@ -1,7 +1,8 @@
 import csv
 from collections import OrderedDict
 from dwarfsquad.lib.utils import to_stderr
-from dwarfsquad.model import AssayConfiguration, QaRuleSchema
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
+from dwarfsquad.model.QaRuleSchema import QaRuleSchema
 from dwarfsquad.lib.build.from_export import helpers as export_helpers
 
 

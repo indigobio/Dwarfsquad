@@ -1,6 +1,6 @@
 from copy import deepcopy
 from dwarfsquad.lib.utils import to_stderr
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.model.Level import ControlMaterial
 from dwarfsquad.model.Lot import LotCompound as LotCompound
 

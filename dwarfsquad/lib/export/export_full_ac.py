@@ -3,7 +3,7 @@ from dwarfsquad.lib.utils import to_stderr
 from dwarfsquad.lib.export.export_lots_and_levels import build_lot_rows
 from dwarfsquad.lib.export.export_rulesettings import get_rulesettings_rows, get_rulesettings_keys
 from dwarfsquad.lib.export.export_compounds import build_compound_rows
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib.export.export_assay_configuration import get_assay_configuration_rows
 
 

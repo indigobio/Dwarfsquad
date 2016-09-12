@@ -1,5 +1,13 @@
 from dwarfsquad.lib.build.from_export.helpers import build_reference_map
-import dwarfsquad.model
+from dwarfsquad.lib.utils import to_stderr
+from dwarfsquad.model.Calibration import Calibration
+from dwarfsquad.model.ChromatogramMethod import ChromatogramMethod
+from dwarfsquad.model.CompoundMethod import CompoundMethod
+from dwarfsquad.model.PeakIntegration import PeakIntegration
+from dwarfsquad.model.ReductionMethod import ReductionMethod
+from dwarfsquad.model.RetentionTime import RetentionTime
+from dwarfsquad.model.Smoothing import Smoothing
+from dwarfsquad.model.Threshold import Threshold
 
 
 def build_compound_methods(compounds_csv):
@@ -19,7 +27,7 @@ def build_compound_methods(compounds_csv):
                 unique_compound_choromatograms.add(unique_compound_chromatogram_name)
         except Exception as e:
             for k, v in row.items():
-                print(k + ": " + v)
+                to_stderr(k + ": " + v)
             raise e
 
     reference_map = build_reference_map(compound_methods)
@@ -46,7 +54,7 @@ def resolve_references(compound_methods, reference_map):
 
 def get_chromatogram_method(row):
 
-    chromatogram_method = dwarfsquad.model.ChromatogramMethod({})
+    chromatogram_method = ChromatogramMethod({})
     chromatogram_method.set_peak_integration(get_peak_integration(row))
     chromatogram_method.set_reduction_method(get_reduction_method(row))
     chromatogram_method.set_name(row.get('chromatogram_name'))
@@ -56,7 +64,7 @@ def get_chromatogram_method(row):
 
 def get_reduction_method(row):
 
-    reduction_method = dwarfsquad.model.ReductionMethod({})
+    reduction_method = ReductionMethod({})
     reduction_method.set_activation_energy(row.get('activation_energy'))
     reduction_method.set_combine_ions(row.get('combine_ions'))
     reduction_method.set_lower_precursor_mass(row.get('lower_precursor_mass'))
@@ -70,7 +78,7 @@ def get_reduction_method(row):
 
 def get_peak_integration(row):
 
-    peak_integration = dwarfsquad.model.PeakIntegration({})
+    peak_integration = PeakIntegration({})
     peak_integration.set_retention_time(get_retention_time(row))
     peak_integration.set_threshold(get_threshold(row))
     peak_integration.set_smoothing(get_smoothing(row))
@@ -86,7 +94,7 @@ def get_prioritized_peak_models(row):
 
 def get_smoothing(row):
 
-    smoothing = dwarfsquad.model.Smoothing({})
+    smoothing = Smoothing({})
 
     smoothing.set_fixed(row.get('fixed'))
     smoothing.set_max(row.get('max'))
@@ -99,7 +107,7 @@ def get_smoothing(row):
 
 def get_threshold(row):
 
-    threshold = dwarfsquad.model.Threshold({})
+    threshold = Threshold({})
     threshold.set_peak_probability(row.get('peak_probability'))
     threshold.set_absolute_area(row.get('absolute_area'))
     threshold.set_absolute_height(row.get('absolute_height'))
@@ -116,7 +124,7 @@ def get_threshold(row):
 
 def get_retention_time(row):
 
-    retention_time = dwarfsquad.model.RetentionTime({})
+    retention_time = RetentionTime({})
     retention_time.set_bias(row.get('bias'))
     retention_time.set_expected(row.get('expected'))
     retention_time.set_lower_tolerance(row.get('lower_tolerance'))
@@ -134,7 +142,7 @@ def get_retention_time(row):
 
 def get_calibration(row):
 
-    calibration = dwarfsquad.model.Calibration({})
+    calibration = Calibration({})
     calibration.set_degree(row.get('degree'))
     calibration.set_enabled(row.get('enabled'))
     calibration.set_origin(row.get('origin'))
@@ -158,7 +166,7 @@ def get_compound_method(cms, row):
         if row.get('compound_name') == cm.name:
             return cms.pop(index)
 
-    cm = dwarfsquad.model.CompoundMethod({})
+    cm = CompoundMethod({})
     cm.set_name(row.get('compound_name'))
     cm.set_view_order(row.get('view_order'))
     cm.set_calibration(get_calibration(row))

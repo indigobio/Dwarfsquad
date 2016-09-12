@@ -1,4 +1,4 @@
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib import rest_api
 from dwarfsquad.lib.urls import production_assay_configurations
 

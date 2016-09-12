@@ -1,3 +1,4 @@
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 from dwarfsquad.model.ChromatogramMethod import ChromatogramMethod
 from dwarfsquad.model.Calibration import Calibration
@@ -22,7 +23,7 @@ class CompoundMethod(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
         self.set_calibration(Calibration(self.calibration))

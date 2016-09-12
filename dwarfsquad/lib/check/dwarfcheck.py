@@ -1,4 +1,4 @@
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib import collections
 from dwarfsquad.lib.check import helpers as check_helpers
 

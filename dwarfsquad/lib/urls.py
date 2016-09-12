@@ -1,4 +1,7 @@
-from urllib.parse import urljoin, urlparse
+try:
+    from urllib.parse import urljoin, urlparse
+except ImportError:
+    from urlparse import urljoin, urlparse
 
 
 def assay_configurations(url):

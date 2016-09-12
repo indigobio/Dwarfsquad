@@ -1,4 +1,6 @@
 import datetime
+
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 from dwarfsquad.model.CompoundMethod import CompoundMethod
 from dwarfsquad.model.Lot import Lot
@@ -39,7 +41,7 @@ class AssayConfiguration(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(base, arg)
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
 

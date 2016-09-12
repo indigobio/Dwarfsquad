@@ -1,4 +1,4 @@
-from dwarfsquad.lib.utils import to_stderr
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
@@ -24,7 +24,7 @@ class Threshold(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 

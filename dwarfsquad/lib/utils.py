@@ -1,10 +1,11 @@
+from __future__ import print_function
 import sys
 import os
 import json
 from bson import ObjectId
 import zipfile
 from openpyxl import load_workbook
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 
 
 def to_stderr(line):

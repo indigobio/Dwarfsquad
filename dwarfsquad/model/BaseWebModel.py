@@ -1,6 +1,7 @@
 import json
 from copy import deepcopy
 import bson
+from dwarfsquad.lib.compat import join_dicts
 
 
 class BaseWebModel(dict, object):
@@ -46,10 +47,10 @@ class BaseWebModel(dict, object):
         return cls.__name__
 
     def build_entities_with_id(self, dictionary):
-        return {**self.get_missing_items(dictionary), **dictionary}
+        return join_dicts(self.get_missing_items(dictionary), dictionary)
 
     def build_required_entities_only(self, dictionary):
-        return {**self.get_missing_items(dictionary), **self.get_required_items(dictionary)}
+        return join_dicts(self.get_missing_items(dictionary), self.get_required_items(dictionary))
 
     def get_required_items(self, dictionary=None):
         if not dictionary:
@@ -71,7 +72,7 @@ class BaseWebModel(dict, object):
         return dict((key, value) for key, value in deepcopy(self.required_fields).items() if key not in dictionary)
 
     def dump(self):
-        return json.dumps({**self.get_required_items(), **self.get_missing_items()})
+        return json.dumps(join_dicts(self.get_required_items(), self.get_missing_items()))
 
     def enumerate_arrays(self, model, items):
         try:

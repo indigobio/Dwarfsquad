@@ -1,3 +1,4 @@
+from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
 from dwarfsquad.model.ReductionMethod import ReductionMethod
 from dwarfsquad.model.PeakIntegration import PeakIntegration
@@ -20,7 +21,7 @@ class ChromatogramMethod(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = {**base, **arg}
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
         self.set_reduction_method(ReductionMethod(self.reduction_method))

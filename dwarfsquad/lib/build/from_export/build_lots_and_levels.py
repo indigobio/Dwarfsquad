@@ -1,4 +1,5 @@
-from dwarfsquad.model import Lot, Level
+from dwarfsquad.model.Lot import Lot
+from dwarfsquad.model.Level import Level
 from dwarfsquad.model.Level import ControlMaterial
 from dwarfsquad.model.Lot import LotCompound
 
