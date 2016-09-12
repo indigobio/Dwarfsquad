@@ -31,8 +31,8 @@ def get_column_value(c):
 def read_csv_from_sheet(worksheet):
     stream = io.StringIO()
     for row in worksheet.rows:
-        stream.write(','.join([get_column_value(c) for c in row]))
-        stream.write('\n')
+        stream.write(u','.join([get_column_value(c) for c in row]))
+        stream.write(u'\n')
     reader = csv.DictReader(stream.getvalue().splitlines())
     rows = [r for r in reader]
     return rows
