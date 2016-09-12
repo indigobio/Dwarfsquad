@@ -1,2 +1,2 @@
-from build_assay_configuration import build_assay_configuration
-from helpers import validate_json
+from dwarfsquad.lib.build.from_json.build_assay_configuration import build_assay_configuration
+from dwarfsquad.lib.build.from_json.helpers import validate_json

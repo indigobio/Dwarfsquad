@@ -5,7 +5,7 @@ import json
 from bson import ObjectId
 import zipfile
 from openpyxl import load_workbook
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 
 
 def to_stderr(line):
@@ -18,7 +18,7 @@ def to_stdout(line):
 
 def is_json_assay(data):
 
-    if not isinstance(data, basestring) and not os.path.isfile(os.path.abspath(data)):
+    if not isinstance(data, str) and not os.path.isfile(os.path.abspath(data)):
         return False
 
     try:
@@ -47,14 +47,14 @@ def is_valid_oid(data):
 
 
 def is_exported_assay(data):
-    return isinstance(data, basestring) and \
+    return isinstance(data, str) and \
            os.path.exists(data) and \
            os.path.exists(os.path.join(data, 'compounds.csv'))
 
 
 def is_batch(data):
     if os.path.exists(data) and zipfile.is_zipfile(data):
-        return file(data)
+        return os.path.isfile(data)
 
 
 def map_chromatogram_methods(id_map, id_list):

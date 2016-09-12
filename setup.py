@@ -7,13 +7,15 @@ from setuptools import find_packages
 
 
 setup(name='dwarfsquad',
-      version='2.0.0rc2',
+      version='2.1.0',
       description='Assay Configuration Interchange tool.',
       author='Kenneth Tussey',
       author_email='whereskenneth@gmail.com',
-      scripts = ['dwarfsquad/dwarfsquad'],
-      packages= find_packages(),
+      scripts=['dwarfsquad/dwarfsquad'],
       install_requires=[
-          'pymongo', 'behave>=1.2', 'requests==2.1.0', 'pyaml',
-          'tqdm>=1.0', 'requests_cache>=0.4.4','openpyxl==2.3.5'
-      ])
+            'pymongo',
+            'tqdm',
+            'requests',
+            'openpyxl'
+      ],
+      packages=find_packages())

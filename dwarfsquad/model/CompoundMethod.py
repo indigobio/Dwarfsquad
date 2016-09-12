@@ -1,6 +1,7 @@
-from BaseWebModel import BaseWebModel
-from ChromatogramMethod import ChromatogramMethod
-from Calibration import Calibration
+from dwarfsquad.lib.compat import join_dicts
+from dwarfsquad.model.BaseWebModel import BaseWebModel
+from dwarfsquad.model.ChromatogramMethod import ChromatogramMethod
+from dwarfsquad.model.Calibration import Calibration
 
 
 class CompoundMethod(BaseWebModel):
@@ -22,14 +23,14 @@ class CompoundMethod(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
         self.set_calibration(Calibration(self.calibration))
         self.chromatogram_methods = self.enumerate_arrays(ChromatogramMethod, self.chromatogram_methods)
 
     def set_name(self, name):
-        assert isinstance(name, basestring)
+        assert isinstance(name, str)
         self.name = name
 
     def set_view_order(self, view_order):

@@ -1,6 +1,9 @@
 import datetime
-from BaseWebModel import BaseWebModel
-from Level import Level
+
+from dwarfsquad.lib.compat import join_dicts
+from dwarfsquad.model.BaseWebModel import BaseWebModel
+from dwarfsquad.model.Level import Level
+from dwarfsquad.model.LotCompound import LotCompound
 
 
 class Lot(BaseWebModel):
@@ -22,42 +25,20 @@ class Lot(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = join_dicts(arg, base)
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
 
         self.levels = self.enumerate_arrays(Level, self.levels)
-        self.compounds = self.enumerate_arrays(Compound, self.compounds)
+        self.compounds = self.enumerate_arrays(LotCompound, self.compounds)
 
     def set_name(self, name):
-        assert isinstance(name, basestring)
+        assert isinstance(name, str)
         self.name = name
 
     def set_sample_type(self, sample_type):
-        assert isinstance(sample_type, basestring)
+        assert isinstance(sample_type, str)
         self.sample_type = sample_type
 
     def set_compounds(self, compounds):
         assert isinstance(compounds, list)
         self.compounds = compounds
-
-
-class Compound(BaseWebModel):
-    required_fields = {
-        'name': '',
-        'included': False
-    }
-
-    def __init__(self, *args):
-        base = {}
-        for arg in reversed(args):
-            assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
-
-        BaseWebModel.__init__(self, self.build_required_entities_only(base))
-
-    def set_name(self, name):
-        assert isinstance(name, basestring)
-        self.name = name
-
-    def set_included(self, included):
-        self.included = str(included).lower() == 'true'

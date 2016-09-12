@@ -1,4 +1,4 @@
-from dwarfsquad.model import Batch
+from dwarfsquad.model.Batch import Batch
 
 
 def build_batch_from_zip(data):

@@ -1,4 +1,4 @@
-from upload_batch import upload_batch
+from dwarfsquad.lib.upload.upload_batch import upload_batch
 from dwarfsquad.model.Batch import Batch
 from dwarfsquad.lib import collections
 

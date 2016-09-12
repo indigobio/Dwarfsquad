@@ -1,1 +1,1 @@
-from dwarfrepair import dwarfrepair
+from dwarfsquad.lib.repair.dwarfrepair import dwarfrepair

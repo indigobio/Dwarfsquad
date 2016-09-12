@@ -1,6 +1,6 @@
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib import collections
-import helpers as check_helpers
+from dwarfsquad.lib.check import helpers as check_helpers
 
 
 def dwarfcheck(url, data, collection, credentials):
@@ -22,4 +22,4 @@ def dwarfcheck(url, data, collection, credentials):
     if collection in collections.compound_methods:
         check = check_helpers.check_compound_methods(ac)
 
-    return unicode('\n' + check)
+    return str('\n' + check)

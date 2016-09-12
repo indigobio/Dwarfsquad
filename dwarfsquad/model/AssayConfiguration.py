@@ -1,10 +1,12 @@
 import datetime
-from BaseWebModel import BaseWebModel
-from CompoundMethod import CompoundMethod
-from Lot import Lot
+
+from dwarfsquad.lib.compat import join_dicts
+from dwarfsquad.model.BaseWebModel import BaseWebModel
+from dwarfsquad.model.CompoundMethod import CompoundMethod
+from dwarfsquad.model.Lot import Lot
 from bson import ObjectId
-from QaRuleSchema import QaRuleSchema
-from DisplaySettings import DisplaySettings
+from dwarfsquad.model.QaRuleSchema import QaRuleSchema
+from dwarfsquad.model.DisplaySettings import DisplaySettings
 
 
 class AssayConfiguration(BaseWebModel):
@@ -28,7 +30,7 @@ class AssayConfiguration(BaseWebModel):
         return "assay configuration"
 
     def __eq__(self, other):
-        if isinstance(other, basestring):
+        if isinstance(other, str):
             return self.name == other
         if isinstance(other, type(self)):
             return self.name == other.name
@@ -39,7 +41,7 @@ class AssayConfiguration(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = join_dicts(base, arg)
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))
 
@@ -52,7 +54,7 @@ class AssayConfiguration(BaseWebModel):
             self.id_map = {}
 
     def set_name(self, name):
-        assert isinstance(name, basestring)
+        assert isinstance(name, str)
         self.name = name
 
     def set_compute_version(self, compute_version):

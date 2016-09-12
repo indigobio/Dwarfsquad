@@ -1,7 +1,7 @@
 import json
 import os
 from dwarfsquad.lib.utils import to_stderr
-from helpers import build_full_ac_from_json
+from dwarfsquad.lib.build.from_json.helpers import build_full_ac_from_json
 
 
 def build_assay_configuration(path_to_json):

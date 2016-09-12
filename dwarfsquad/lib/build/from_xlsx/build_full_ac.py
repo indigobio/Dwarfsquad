@@ -7,8 +7,6 @@ from dwarfsquad.lib.build.from_export.build_rulesettings import add_rules_to_met
 from dwarfsquad.lib.export.export_rulesettings import generate_rule_schemas
 from dwarfsquad.lib.macros.generate_macros import generate_macros
 
-__author__ = 'ktussey'
-
 
 def build_full_ac(path_to_xlsx):
     wb = load_workbook(path_to_xlsx)
@@ -25,16 +23,16 @@ def build_full_ac(path_to_xlsx):
 
 def get_column_value(c):
     if c.value:
-        return unicode(c.value)
+        return str(c.value)
     else:
-        return unicode('')
+        return ''
 
 
 def read_csv_from_sheet(worksheet):
     stream = io.StringIO()
     for row in worksheet.rows:
-        stream.write(','.join([get_column_value(c) for c in row]))
-        stream.write(unicode('\n'))
+        stream.write(u','.join([get_column_value(c) for c in row]))
+        stream.write(u'\n')
     reader = csv.DictReader(stream.getvalue().splitlines())
     rows = [r for r in reader]
     return rows

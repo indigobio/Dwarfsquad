@@ -1,1 +1,1 @@
-from dwarfbuild import dwarfbuild
+from dwarfsquad.lib.build.dwarfbuild import dwarfbuild

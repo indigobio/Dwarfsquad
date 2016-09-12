@@ -2,7 +2,7 @@ from collections import OrderedDict
 import csv
 from dwarfsquad.lib.utils import to_stderr
 from dwarfsquad.model.Level import ControlMaterial
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 
 
 def export_lots_and_levels(ac):

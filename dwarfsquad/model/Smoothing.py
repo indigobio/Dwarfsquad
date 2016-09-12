@@ -1,4 +1,5 @@
-from BaseWebModel import BaseWebModel
+from dwarfsquad.lib.compat import join_dicts
+from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
 class Smoothing(BaseWebModel):
@@ -18,27 +19,34 @@ class Smoothing(BaseWebModel):
         base = {}
         for arg in reversed(args):
             if isinstance(arg, dict):
-                base = dict(base.items() + arg.items())
+                base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 
     def set_max(self, max):
-        assert isinstance(float(max), float)
-        self.max = max
+        try:
+            int(max)
+            self.max = str(int(max))
+        except ValueError:
+            self.max = str(33)
 
     def set_optimal_enabled(self, optimal_enabled):
         self.optimal_enabled = str(optimal_enabled).lower() == 'true'
 
     def set_min(self, min):
-        assert isinstance(float(min), float)
-        self.min = min
+        try:
+            self.min = str(int(min))
+        except ValueError:
+            self.min = str(3)
 
     def set_start(self, start):
-        assert isinstance(float(start), float)
-        self.start = start
+        try:
+            self.start = str(int(start))
+        except ValueError:
+            self.start = str(12)
 
     def set_fixed(self, fixed):     
         try:
-            self.fixed = int(fixed)
+            self.fixed = str(int(fixed))
         except ValueError:
-            self.fixed = None
+            self.fixed = str(12)

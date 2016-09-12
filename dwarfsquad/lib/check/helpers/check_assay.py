@@ -1,6 +1,6 @@
-from check_lots_and_levels import check_lots_and_levels
-from check_compound_methods import check_compound_methods
-from check_rulesettings import check_rulesettings
+from dwarfsquad.lib.check.helpers.check_lots_and_levels import check_lots_and_levels
+from dwarfsquad.lib.check.helpers.check_compound_methods import check_compound_methods
+from dwarfsquad.lib.check.helpers.check_rulesettings import check_rulesettings
 
 
 def check_assay(ac):

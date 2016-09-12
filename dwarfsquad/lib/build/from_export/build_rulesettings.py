@@ -1,4 +1,4 @@
-import helpers as export_helpers
+from dwarfsquad.lib.build.from_export import helpers as export_helpers
 
 
 def add_rules_to_methods(rulesettings_list, cms):

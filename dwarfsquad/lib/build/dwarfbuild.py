@@ -1,7 +1,7 @@
-from from_zip import build_batch_from_zip
-from from_json import build_assay_configuration as build_ac_from_json
-from from_export import build_full_assay_configuration as build_ac_from_export
-from from_xlsx import build_full_ac as build_ac_from_xlsx
+from dwarfsquad.lib.build.from_zip import build_batch_from_zip
+from dwarfsquad.lib.build.from_json import build_assay_configuration as build_ac_from_json
+from dwarfsquad.lib.build.from_export import build_full_assay_configuration as build_ac_from_export
+from dwarfsquad.lib.build.from_xlsx import build_full_ac as build_ac_from_xlsx
 import dwarfsquad.lib.utils as utils
 
 

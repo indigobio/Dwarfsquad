@@ -1,7 +1,8 @@
-from BaseWebModel import BaseWebModel
-from RetentionTime import RetentionTime
-from Smoothing import Smoothing
-from Threshold import Threshold
+from dwarfsquad.lib.compat import join_dicts
+from dwarfsquad.model.BaseWebModel import BaseWebModel
+from dwarfsquad.model.RetentionTime import RetentionTime
+from dwarfsquad.model.Smoothing import Smoothing
+from dwarfsquad.model.Threshold import Threshold
 
 
 class PeakIntegration(BaseWebModel):
@@ -23,7 +24,7 @@ class PeakIntegration(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 

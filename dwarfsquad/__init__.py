@@ -1,5 +1,5 @@
-from lib import actions
-from lib import collections
+from dwarfsquad.lib import actions
+from dwarfsquad.lib import collections
 
 
 def get_supported_actions():

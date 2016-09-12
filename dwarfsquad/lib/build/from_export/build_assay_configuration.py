@@ -1,11 +1,11 @@
 import os
-import helpers
+from dwarfsquad.lib.build.from_export import helpers
 from dwarfsquad.lib.macros.generate_macros import generate_macros
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.model.DisplaySettings import DisplaySettings
-from build_compound_methods import build_compound_methods
-from build_lots_and_levels import build_lots_and_levels
-from build_rulesettings import add_rules_to_methods
+from dwarfsquad.lib.build.from_export.build_compound_methods import build_compound_methods
+from dwarfsquad.lib.build.from_export.build_lots_and_levels import build_lots_and_levels
+from dwarfsquad.lib.build.from_export.build_rulesettings import add_rules_to_methods
 
 
 def build_full_assay_configuration(path_to_export):

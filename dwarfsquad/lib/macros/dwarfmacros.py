@@ -1,8 +1,8 @@
 from dwarfsquad.lib.macros.generate_macros import generate_macros
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 
 
 def dwarfmacros(url, data, collection, credentials):
 
     if isinstance(data, AssayConfiguration):
-        return unicode('\n'.join(['\n'] + generate_macros(data) + ['\n']))
+        return str('\n'.join(['\n'] + generate_macros(data) + ['\n']))

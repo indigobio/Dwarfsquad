@@ -1,6 +1,6 @@
-from dwarfsquad.model import AssayConfiguration
+from dwarfsquad.model.AssayConfiguration import AssayConfiguration
 from dwarfsquad.lib import collections
-import helpers as repair_helpers
+from dwarfsquad.lib.repair import helpers as repair_helpers
 
 
 def dwarfrepair(url, data, collection, credentials):

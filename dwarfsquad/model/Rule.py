@@ -1,4 +1,5 @@
-from BaseWebModel import BaseWebModel
+from dwarfsquad.lib.compat import join_dicts
+from dwarfsquad.model.BaseWebModel import BaseWebModel
 
 
 class Rule(BaseWebModel):
@@ -18,6 +19,6 @@ class Rule(BaseWebModel):
         base = {}
         for arg in reversed(args):
             assert isinstance(arg, dict)
-            base = dict(base.items() + arg.items())
+            base = join_dicts(arg, base)
 
         BaseWebModel.__init__(self, self.build_entities_with_id(base))

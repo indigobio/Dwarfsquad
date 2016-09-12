@@ -1,7 +1,7 @@
 from requests.exceptions import SSLError
 import requests
-import urls as urls
-from exceptions import AuthorizationError
+from dwarfsquad.lib import urls as urls
+from dwarfsquad.lib.exceptions import AuthorizationError
 from dwarfsquad.lib.utils import to_stderr
 
 
@@ -11,7 +11,7 @@ def site_exists(url):
         requests.get(url)
         return True
     except SSLError as e:
-        to_stderr(e.message)
+        to_stderr(e)
         return True
     except requests.ConnectionError:
         return False
@@ -29,5 +29,5 @@ def can_login(url, credentials):
         return site_exists(url)
 
     except Exception as e:
-        to_stderr(e.message)
+        to_stderr(e)
         return False

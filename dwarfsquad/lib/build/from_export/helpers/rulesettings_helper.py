@@ -1,6 +1,6 @@
 from dwarfsquad.lib.utils import to_stderr
 import os
-from csv_helper import read_csv
+from dwarfsquad.lib.build.from_export.helpers.csv_helper import read_csv
 
 
 def get_rulesettings_csv(path_to_export):
@@ -20,12 +20,11 @@ def get_enabled_rules(rulesettings_list, cm):
     enabled_rules_lookup = {}
     for row in rulesettings_list:
         if row['context'] == 'compound' and row['compound'] == cm.name:
-            for column, value in row.iteritems():
+            for column, value in row.items():
                 if column and value.lower() == 'enabled':
                     enabled_rules_lookup[column] = True
                 elif column and value.lower() == 'disabled':
                     enabled_rules_lookup[column] = False
-
 
     return enabled_rules_lookup
 
@@ -35,7 +34,7 @@ def get_settings(rulesettings_list, reference_map, cm, context='compound'):
     settings = {}
     for row in rulesettings_list:
         if row['context'] == context and row['compound'] == cm.name:
-            for column, value in row.iteritems():
+            for column, value in row.items():
                 if column and value.lower() not in ['enabled', 'disabled', cm.name.lower(), context.lower(), 'ignore']:
                     try:
                         referenced_value = reference_map[str(value)]
