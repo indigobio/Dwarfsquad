@@ -23,7 +23,10 @@ def build_full_ac(path_to_xlsx):
 
 def get_column_value(c):
     if c.value:
-        return str(c.value)
+        try:
+            return str(round(c.value, 8))
+        except TypeError:        
+            return str(c.value)
     else:
         return ''
 
