@@ -73,6 +73,8 @@ def build_compound_row(compound, reference_map):
         row['relative_area'] = ch_m.peak_integration.threshold.relative_area
         row['absolute_height'] = ch_m.peak_integration.threshold.absolute_height
         row['relative_height'] = ch_m.peak_integration.threshold.relative_height
+        row['relative_low_std_area'] = ch_m.peak_integration.threshold.relative_low_std_area
+        row['relative_low_std_height'] = ch_m.peak_integration.threshold.relative_low_std_height
         row['signal_to_noise'] = ch_m.peak_integration.threshold.signal_to_noise
         row['first_derivative'] = ch_m.peak_integration.threshold.first_derivative
         row['second_derivative'] = ch_m.peak_integration.threshold.second_derivative

@@ -13,6 +13,8 @@ class Threshold(BaseWebModel):
         "first_derivative": "0.25",
         "second_derivative": "0.25",
         "peak_probability": "0.8",
+        "relative_low_std_area": "",
+        "relative_low_std_height": "",
         "saturation": "100000000"
     }
 
@@ -87,6 +89,18 @@ class Threshold(BaseWebModel):
             self.first_derivative = str(float(first_derivative))
         except ValueError:
             self.first_derivative = str(0)
+
+    def set_relative_low_std_area(self, relative_low_std_area):
+        try:
+            self.relative_low_std_area = str(float(relative_low_std_area))
+        except ValueError:
+            self.relative_low_std_area = ""
+
+    def set_relative_low_std_height(self, relative_low_std_height):
+        try:
+            self.relative_low_std_height = str(float(relative_low_std_height))
+        except ValueError:
+            self.relative_low_std_height = ""
 
     def set_to_zero(self):
         return str(0)

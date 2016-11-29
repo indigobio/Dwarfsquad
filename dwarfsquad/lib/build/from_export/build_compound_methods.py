@@ -118,6 +118,8 @@ def get_threshold(row):
     threshold.set_relative_height(row.get('relative_height'))
     threshold.set_saturation(row.get('saturation'))
     threshold.set_signal_to_noise(row.get('signal_to_noise'))
+    threshold.set_relative_low_std_area(row.get('relative_low_std_area'))
+    threshold.set_relative_low_std_height(row.get('relative_low_std_height'))
 
     return threshold
 

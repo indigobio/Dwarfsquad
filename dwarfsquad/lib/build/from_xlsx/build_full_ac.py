@@ -25,7 +25,7 @@ def get_column_value(c):
     if c.value:
         try:
             return str(round(c.value, 8))
-        except TypeError:        
+        except TypeError:
             return str(c.value)
     else:
         return ''
