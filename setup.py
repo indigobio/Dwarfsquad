@@ -7,7 +7,7 @@ from setuptools import find_packages
 
 
 setup(name='dwarfsquad',
-      version='2.1.0',
+      version='2.1.1',
       description='Assay Configuration Interchange tool.',
       author='Kenneth Tussey',
       author_email='whereskenneth@gmail.com',
