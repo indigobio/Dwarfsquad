@@ -9,10 +9,7 @@ def export_lots_and_levels(ac):
 
     assert isinstance(ac, AssayConfiguration)
     rows = build_lot_rows(ac)
-    try:
-        fieldnames = rows[0].keys()
-    except IndexError:
-        fieldnames = ['type', 'lot', 'level', 'compound', 'nominal_conc', 'std_dev']
+    fieldnames = get_lot_level_keys(rows)
 
     with open('lots_levels.csv', 'w') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -20,6 +17,14 @@ def export_lots_and_levels(ac):
         writer.writerows(rows)
 
     to_stderr("Wrote lots and levels to lots_levels.csv!")
+
+
+def get_lot_level_keys(rows):
+    try:
+        fieldnames = rows[0].keys()
+    except IndexError:
+        fieldnames = ['type', 'lot', 'level', 'compound', 'nominal_conc', 'std_dev']
+    return fieldnames
 
 
 def build_lot_rows(ac):

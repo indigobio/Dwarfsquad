@@ -34,6 +34,11 @@ def dwarfbuild(data):
         utils.to_stderr("Posting batch to quartermaster...")
         return build_batch_from_zip(data)
 
+    if utils.is_valid_oid(data) or isinstance(data, str):
+        utils.to_stderr("Found string data at " + str(data))
+        utils.to_stderr("Treating data like string query...")
+        return data
+
     utils.to_stderr("Could not find any data at " + data + ". What is it you are trying to do?")
     return data
 

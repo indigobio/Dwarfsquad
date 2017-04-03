@@ -25,7 +25,28 @@ def batches_upload(url):
     port = parsed.port
     url = parsed.scheme + "://quartermaster." + '.'.join(domain)
     if port:
-        url += ":" + port
+        url += ":" + str(port)
+
 
     url = urljoin(url, 'batches/upload/' + client)
+    return url
+
+
+def batch(url):
+    return urljoin(url, "batch/")
+
+
+def batches(url, batch_id):
+    url = urljoin(url, "batches/")
+    return urljoin(url, str(batch_id))
+
+
+def batches_json(url):
+    url = urljoin(url, "batches.json")
+    return url
+
+
+def batch_download(url, batch_id):
+    url = urljoin(batch(url), "download/")
+    url = urljoin(url, str(batch_id) + "?partial=true")
     return url

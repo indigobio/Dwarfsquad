@@ -1,4 +1,5 @@
 import datetime
+from collections import OrderedDict
 
 from dwarfsquad.lib.compat import join_dicts
 from dwarfsquad.model.BaseWebModel import BaseWebModel
@@ -19,7 +20,7 @@ class AssayConfiguration(BaseWebModel):
         'lots': [],
         'macros': [],
         'one_step_review': False,
-        'properties': {},
+        'properties': OrderedDict(),
         'instruments': [],
         'qa_rule_schemas': [],
         'display_settings': DisplaySettings({})
@@ -69,8 +70,8 @@ class AssayConfiguration(BaseWebModel):
         self.macros = macros
 
     def set_one_step_review(self, one_step_review):
-        assert isinstance(one_step_review, bool)
-        self.one_step_review = one_step_review
+        assert isinstance(one_step_review, str)
+        self.one_step_review = "true" in str(one_step_review).lower()
 
     def set_instruments(self, instruments):
         assert isinstance(instruments, list)

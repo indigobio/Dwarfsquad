@@ -17,16 +17,15 @@ def to_stdout(line):
 
 
 def is_json_assay(data):
-
     if not isinstance(data, str) and not os.path.isfile(os.path.abspath(data)):
         return False
-
     try:
         with open(os.path.abspath(str(data)), 'r') as f:
             x = json.load(f)
-            assert set(AssayConfiguration.required_fields.keys()).issubset(set(x.keys()))
+            AssayConfiguration(x)
             return True
-    except Exception:
+    except Exception as e:
+        to_stderr(str(e))
         return False
 
 

@@ -38,6 +38,8 @@ def build_assay_configuration(assay_csv):
             ac.set_name(row['name'])
         if row['compute_version']:
             ac.set_compute_version(row['compute_version'])
+        if row['one_step_review']:
+            ac.set_one_step_review(row['one_step_review'])
         if row['peak_area_format']:
             display_settings.set_peak_area_format(row['peak_area_format'])
         if row['concentration_format']:

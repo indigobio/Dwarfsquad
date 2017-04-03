@@ -30,6 +30,7 @@ def get_assay_configuration_rows(ac):
     row['concentration_format'] = ac.display_settings.concentration_format
     row['response_format'] = ac.display_settings.response_format
     row['review_method'] = ac.display_settings.review_method
+    row['one_step_review'] = str(ac.one_step_review)
     instruments = iter(ac.instruments)
     macros = iter(ac.macros)
     properties = iter(ac.properties.copy().items())
@@ -67,5 +68,6 @@ def get_assay_configuration_rows(ac):
         row['concentration_format'] = ''
         row['response_format'] = ''
         row['review_method'] = ''
+        row['one_step_review'] = ''
 
     return rows

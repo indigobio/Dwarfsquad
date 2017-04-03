@@ -33,31 +33,31 @@ class Threshold(BaseWebModel):
     def set_relative_area(self, relative_area):
         try:
             self.relative_area = str(float(relative_area))
-        except ValueError:
+        except (ValueError, TypeError):
             self.relative_area = self.set_to_zero()
 
     def set_saturation(self, saturation):
         try:
             self.saturation = str(float(saturation))
-        except ValueError:
+        except (ValueError, TypeError):
             self.saturation = self.set_to_zero()
 
     def set_peak_probability(self, peak_probability):
             try:
                 self.peak_probability = str(float(peak_probability))
-            except ValueError:
+            except (ValueError, TypeError):
                 self.peak_probability = self.set_to_zero()
 
     def set_absolute_area(self, absolute_area):
         try:
             self.absolute_area = str(float(absolute_area))
-        except ValueError:
+        except (ValueError, TypeError):
             self.absolute_area = self.set_to_zero()
 
     def set_min_merge_difference(self, min_merge_difference):
         try:
             self.min_merge_difference = str(float(min_merge_difference))
-        except ValueError:
+        except (ValueError, TypeError):
             self.min_merge_difference = self.set_to_zero()
 
     def set_absolute_height(self, absolute_height):
@@ -69,37 +69,37 @@ class Threshold(BaseWebModel):
     def set_relative_height(self, relative_height):
         try:
             self.relative_height = str(float(relative_height))
-        except ValueError:
+        except (ValueError, TypeError):
             self.relative_height = self.set_to_zero()
 
     def set_signal_to_noise(self, signal_to_noise):
         try:
             self.signal_to_noise = str(float(signal_to_noise))
-        except ValueError:
+        except (ValueError, TypeError):
             self.signal_to_noise = self.set_to_zero()
 
     def set_second_derivative(self, second_derivative):
         try:
             self.second_derivative = str(float(second_derivative))
-        except ValueError:
+        except (ValueError, TypeError):
             self.second_derivative = self.set_to_zero()
 
     def set_first_derivative(self, first_derivative):
         try:
             self.first_derivative = str(float(first_derivative))
-        except ValueError:
+        except (ValueError, TypeError):
             self.first_derivative = str(0)
 
     def set_relative_low_std_area(self, relative_low_std_area):
         try:
             self.relative_low_std_area = str(float(relative_low_std_area))
-        except ValueError:
+        except (ValueError, TypeError):
             self.relative_low_std_area = ""
 
     def set_relative_low_std_height(self, relative_low_std_height):
         try:
             self.relative_low_std_height = str(float(relative_low_std_height))
-        except ValueError:
+        except (ValueError, TypeError):
             self.relative_low_std_height = ""
 
     def set_to_zero(self):
