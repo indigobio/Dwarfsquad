@@ -25,7 +25,7 @@ class Calibration(BaseWebModel):
         BaseWebModel.__init__(self, self.build_required_entities_only(base))
 
     def set_enabled(self, enabled):
-        self.enabled = str(enabled).lower() == 'true'
+        self.enabled = (str(enabled).lower() == 'true' or str(enabled) == "1")
 
     def set_degree(self, degree):
         try:
